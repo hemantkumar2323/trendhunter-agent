@@ -1,20 +1,24 @@
-import { getTikTokTrends, getRedditPsychTrends } from "../utils/scraper.js";
-import { scoreContent } from "../utils/scorer.js";
+name: Trend Scraper Auto Run
 
-export default async function handler(req, res) {
-  const allTrends = [];
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # every 6 hours
+  workflow_dispatch:       # allows manual trigger from GitHub UI
 
-  const sources = [
-    await getTikTokTrends(),
-    await getRedditPsychTrends(),
-  ];
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-  sources.flat().forEach((item) => {
-    if (scoreContent(item)) {
-      allTrends.push(item);
-    }
-  });
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-  res.status(200).json({ results: allTrends });
-}
+      - name: Install dependencies
+        run: npm install
 
+      - name: Run TrendHunter Agent
+        run: node api/trends.js
