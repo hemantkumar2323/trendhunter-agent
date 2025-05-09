@@ -1,0 +1,9 @@
+{
+  "name": "trendhunter-agent",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "jsdom": "^23.1.1",
+    "node-fetch": "^3.3.2"
+  }
+}
