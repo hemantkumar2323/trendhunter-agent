@@ -20,5 +20,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run TrendHunter Agent
-        run: node api/trends.js
+      -- name: Run Scraper Logic
+  run: node test/run-local.js
+
