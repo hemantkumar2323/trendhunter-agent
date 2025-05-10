@@ -1,19 +1,9 @@
 import { getTikTokTrends, getRedditPsychTrends } from "../utils/scraper.js";
-import { scoreContent } from "../utils/scorer.js";
 
 (async () => {
-  const allTrends = [];
+  const reddit = await getRedditPsychTrends();
+  console.log("🔬 Raw Reddit Trends:", reddit);
 
-  const sources = [
-    await getTikTokTrends(),
-    await getRedditPsychTrends(),
-  ];
-
-  sources.flat().forEach((item) => {
-    if (scoreContent(item)) {
-      allTrends.push(item);
-    }
-  });
-
-  console.log("🧠 Approved Trends:", allTrends);
+  const tiktok = await getTikTokTrends();
+  console.log("🎥 Raw TikTok Trends:", tiktok);
 })();
