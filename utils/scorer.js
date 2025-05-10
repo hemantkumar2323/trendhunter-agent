@@ -7,3 +7,4 @@ export function scoreContent(item) {
   if (title.includes("mind") || title.includes("behavior") || title.includes("mental")) score += 1;
   return score >= 1; // Lowered from 2 → 1
 }
+ 
