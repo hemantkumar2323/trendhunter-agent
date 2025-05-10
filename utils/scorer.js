@@ -5,6 +5,6 @@ export function scoreContent(item) {
   if (title.includes("study")) score += 1;
   if (title.includes("habit") || title.includes("motivation")) score += 1;
   if (title.includes("mind") || title.includes("behavior") || title.includes("mental")) score += 1;
-  return score >= 1; // Lowered from 2 → 1
+  return score >= 0; // Lowered from 2 → 1
 }
  
