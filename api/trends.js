@@ -16,8 +16,8 @@ export default async function handler(req, res) {
       }
     });
 
-    res.status(200).json({ results: allTrends });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch trends", details: error.message });
+    return res.status(200).json({ results: allTrends });
+  } catch (err) {
+    return res.status(500).json({ error: err.message || "Unknown error" });
   }
 }
